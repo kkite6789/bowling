@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Bowling System</h1>
+	<table border="1" width="90%">
+		<thead>
+			<tr>
+				<td>이름</td>
+				<td colspan="2">1</td>
+				<td colspan="2">2</td>
+				<td colspan="2">3</td>
+				<td colspan="2">4</td>
+				<td colspan="2">5</td>
+				<td colspan="2">6</td>
+				<td colspan="2">7</td>
+				<td colspan="2">8</td>
+				<td colspan="2">9</td>
+				<td colspan="3">10</td>
+				<td colspan="2">HDP</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2"><span id="playerOne"></span></td>
+				<td><span id="frame1_1">&nbsp;</span></td>
+				<td><span id="frame1_2">&nbsp;</span></td>
+				<td><span id="frame2_1">&nbsp;</span></td>
+				<td><span id="frame2_2">&nbsp;</span></td>
+				<td><span id="frame3_1">&nbsp;</span></td>
+				<td><span id="frame3_2">&nbsp;</span></td>
+				<td><span id="frame4_1">&nbsp;</span></td>
+				<td><span id="frame4_2">&nbsp;</span></td>
+				<td><span id="frame5_1">&nbsp;</span></td>
+				<td><span id="frame5_2">&nbsp;</span></td>
+				<td><span id="frame6_1">&nbsp;</span></td>
+				<td><span id="frame6_2">&nbsp;</span></td>
+				<td><span id="frame7_1">&nbsp;</span></td>
+				<td><span id="frame7_2">&nbsp;</span></td>
+				<td><span id="frame8_1">&nbsp;</span></td>
+				<td><span id="frame8_2">&nbsp;</span></td>
+				<td><span id="frame9_1">&nbsp;</span></td>
+				<td><span id="frame9_2">&nbsp;</span></td>
+				<td><span id="frame10_1">&nbsp;</span></td>
+				<td><span id="frame10_2">&nbsp;</span></td>
+				<td><span id="frame10_3">&nbsp;</span></td>
+				<td rowspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<!--  <td>&nbsp;</td>-->
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="3">&nbsp;</td>
+				<!--  <td>&nbsp;</td>-->
+			</tr>
+			
+		</tbody>
+	</table>
+	<br>
+	<div>
+		선수 이름:
+		<input type="text" id="playerInputOne">
+	</div>
+	
+	<button type="button" id="addBtn">선수입력</button>
+	<hr>
+	<span id="frameNum"></span>프레임
+	<hr>
+	<br>
+	<div><!--4개 7,8,9,10 번 핀 -->
+		10<input type="checkbox" id="pin7" class="pin">
+		9<input type="checkbox" id="pin8" class="pin">
+		8<input type="checkbox" id="pin9" class="pin">
+		7<input type="checkbox" id="pin10" class="pin">
+
+	
+		6<input type="checkbox" id="pin4" class="pin">
+		5<input type="checkbox" id="pin5" class="pin">
+		4<input type="checkbox" id="pin6" class="pin">
+
+	
+		3<input type="checkbox" id="pin2" class="pin">
+		2<input type="checkbox" id="pin3" class="pin">
+	
+	
+		1<input type="checkbox" id="pin1" class="pin">
+	</div>
+	<button type="button" id="playBtn">play</button>
+</body>
+<script>
+	let frameNum=1;// 시작하면 프레임은 1 
+	
+	$('#frameNum').text(frameNum)
+	
+	$('#playBtn').click(function(){
+		console.log('play');
+		let pinCnt=0;
+		$('.pin').each(function(index,item){
+			if(item.checked == true) {
+				pinCnt+=1;
+			}
+		});
+		console.log('pinCount : ',pinCnt);
+		if(pinCnt == 10){
+			pinCnt = 'X';
+		}
+		$('#frame1_1').text(pinCnt);
+
+	});
+
+	$('#addBtn').click(function(){
+		console.log("addBtn click");
+		if($('#playerInputOne').val() == ''){
+			alert('선수 이름을 입력하세요');
+			return;
+		} else{
+			$('#playerOne').text($('#playerInputOne').val());
+		}
+	});
+</script>
+</html>
